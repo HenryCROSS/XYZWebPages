@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "user_id": "AAKKLL1", "user_name": "Yaksha", "user_role": "Trainer", "user_score": 1200 },
+    { "user_id": "AAKKLL2", "user_name": "Doremy", "user_role": "Cosplayer", "user_score": 1201 },
+    { "user_id": "AAKKLL3", "user_name": "Eox", "user_role": "Modder", "user_score": 1202 },
+    { "user_id": "AAKKLL4", "user_name": "164", "user_role": "Van guard", "user_score": 1203 }
+  ]
+}
