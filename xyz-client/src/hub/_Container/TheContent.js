@@ -8,7 +8,7 @@ import { CContainer, CFade } from '@coreui/react'
 
 // routes config
 import {routesAdmin as routes} from 'hub/routes'
-import loading from 'components/com_common/Loading'
+import loading from 'components/atom_common/Loading'
   
 const TheContent = () => {
   return (

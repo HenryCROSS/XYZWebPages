@@ -37,15 +37,15 @@ export const nav_admin = [
   {
     _tag: 'CSidebarNavItem',
     name: 'Users',
-    to: '/admin/users',
-    route: '/admin/users',
+    to: '/admin/users/0',
+    route: '/admin/users/0',
     icon: 'cil-user',
   },  
   {
     _tag: 'CSidebarNavItem',
     name: 'Leaderboard',
-    to: '/admin/leaderboard',
-    route: '/admin/leaderboard',
+    to: '/admin/leaderboard/0',
+    route: '/admin/leaderboard/0',
     icon: 'cil-book',
   },   
   {

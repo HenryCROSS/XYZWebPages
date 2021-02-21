@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import "./app.css";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
-import { loading } from "components/com_common/Loading";
+import { loading } from "components/atom_common/Loading";
 
 const AdminContainer = lazy(() => import("hub/_Container"));
 const Home = lazy(() => import("hub/layouts/client_home"));
