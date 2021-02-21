@@ -15,7 +15,7 @@ if (process.env.BUILD_FOR == "live") {
 
 const timeout = 100000;
 
-const USER_KEY = "123456";
+const USER_KEY = "123456mysecret";
 export { USER_KEY };
 
 const { token } = JSON.parse(localStorage.getItem(USER_KEY) || "{}");
@@ -31,8 +31,6 @@ const createRequest = (defaultRoute) => {
     timeout,
     headers,
   });
-
-  console.log(SERVER + defaultRoute)
 
   request.interceptors.request.use((req) => {
     const { token } = JSON.parse(localStorage.getItem(USER_KEY) || "{}");

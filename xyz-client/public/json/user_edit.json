@@ -1,4 +1,5 @@
 {
+  "status": "success",
   "items": [
     { "user_id": "AAKKLL1", "user_name": "Yaksha", "user_role": "Trainer", "user_score": 1200 }
   ]

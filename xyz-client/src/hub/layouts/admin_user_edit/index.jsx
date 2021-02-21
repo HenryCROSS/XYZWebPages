@@ -3,6 +3,8 @@ import cn from "classnames";
 import { useParams, useHistory } from "react-router-dom";
 import UserApi from "api/UserApi";
 
+import useLoading from "hooks/useLoading";
+
 // styles
 import style from "./style";
 
@@ -18,20 +20,31 @@ export default style(({ className }) => {
   const [item, setItem] = useState({});
 
   useEffect(() => {
-    if (!isCreate) {
-      UserApi.get(user_id).then((res) => setItem(res?.items?.[0]));
-    }
+    if (!isCreate) doInit();
   }, []);
 
   const handleInputChange = (e) => {
     setItem((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  // ========
-  const doSave = async () => {
-    UserApi.save(item).then((res) => {
-      isCreate ? goBack() : setItem((prev) => ({ ...prev, ...res?.items?.[0] }));
+  // ======== wrap functions with loading + alert
+  const hookGet = useLoading(async (...params) => await UserApi.get(...params), false);
+  const hookSave = useLoading(async (...params) => await UserApi.save(...params), true);
+  const hookSaveTest = useLoading(async (...params) => await UserApi.saveErrorTest(...params), true);
+
+  // ======== call api
+  const doInit = () => {
+    hookGet(user_id).then((res) => setItem(res?.data?.items?.[0]));
+  };
+
+  const doSave = () => {
+    hookSave(item).then((res) => {
+      isCreate ? goBack() : setItem((prev) => ({ ...prev, ...res?.data?.items?.[0] }));
     });
+  };
+
+  const doSaveTest = () => {
+    hookSaveTest(item);
   };
 
   return (
@@ -50,6 +63,7 @@ export default style(({ className }) => {
         <Input id="user_score" value={item.user_score || ""} onChange={handleInputChange} />
       </div>
       <button onClick={doSave}>save</button>
+      <button onClick={doSaveTest}>save(error test)</button>
     </div>
   );
 });

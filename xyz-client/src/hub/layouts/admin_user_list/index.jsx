@@ -3,6 +3,8 @@ import cn from "classnames"
 import { Link, useParams } from "react-router-dom";
 import UserApi from "api/UserApi";
 
+import useLoading from 'hooks/useLoading'
+
 // styles
 import style from "./style"
 
@@ -11,8 +13,16 @@ export default style(({className}) => {
   const [list, setList] = useState([]);
 
   useEffect(async () => {
-    await UserApi.getList(pagination).then((res) => setList(res.items));
+    doInit()
   }, []);
+
+  // ======== wrap functions with loading + alert
+  const hookGetList = useLoading(async(...params) => await UserApi.getList(...params), false)
+
+  // ======== call api
+  const doInit = () => {
+    hookGetList(pagination).then((res) => setList(res?.data?.items))
+  }
 
   return (
     <div className={cn(className)}>
